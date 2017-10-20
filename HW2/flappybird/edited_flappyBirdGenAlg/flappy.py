@@ -33,6 +33,15 @@ next_pipe_x = -1
 next_pipe_hole_y = -1
 generation = 1
 
+# Inintial hyperParam settings
+lr = 0.01
+decay = 1e-6
+momentum = 0.9
+nesterov = True
+loss = "mse"
+# optimizer = sgd
+metrics = ["accuracy"]
+
 def save_pool():
     for xi in range(total_models):
         current_pool[xi].save_weights("Current_Model_Pool/model_new" + str(xi) + ".keras")
@@ -79,10 +88,9 @@ for i in range(total_models):
     model.add(Dense(output_dim=1))
     model.add(Activation("sigmoid"))
 
-    print(model.losses())
-
-    sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-    model.compile(loss="mse", optimizer=sgd, metrics=["accuracy"])
+    # make hyperparam settings variables
+    sgd = SGD(lr=lr, decay=decay, momentum=momentum, nesterov=nesterov)
+    model.compile(loss=loss, optimizer=sgd, metrics=metrics)
     current_pool.append(model)
     fitness.append(-100)
 
