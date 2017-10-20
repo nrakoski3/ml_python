@@ -25,10 +25,11 @@ IMAGES, SOUNDS, HITMASKS = {}, {}, {}
 
 # Use all 16 CPUs
 import os
+from keras import losses
 
-os.environ['MKL_NUM_THREADS'] = '16'
-os.environ['GOTO_NUM_THREADS'] = '16'
-os.environ['OMP_NUM_THREADS'] = '16'
+os.environ['MKL_NUM_THREADS'] = '8'
+os.environ['GOTO_NUM_THREADS'] = '8'
+os.environ['OMP_NUM_THREADS'] = '8'
 os.environ['openmp'] = 'True'
 
 load_saved_pool = 0  #Set to 1 once sufficiently trained
@@ -46,7 +47,7 @@ lr = 0.01
 decay = 1e-6
 momentum = 0.9
 nesterov = True
-loss = "mse"
+loss = losses.categorical_crossentropy
 # optimizer = sgd
 metrics = ["accuracy"]
 
