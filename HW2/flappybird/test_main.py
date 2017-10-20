@@ -2,12 +2,12 @@ from keras.models import Sequential
 from keras.layers import Dense, Activation
 from keras.optimizers import SGD
 from keras import losses
-from HW2.flappybird.edited_flappyBirdGenAlg.flappy import main as flappy_main
+from HW2.flappybird.edited_flappyBirdGenAlg.flappy import main as flappy
 
 
 def main():
 
-    result = flappy_main()
+    result = flappy()
     print(result)
 
     return
