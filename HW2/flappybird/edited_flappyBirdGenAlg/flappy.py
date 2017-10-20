@@ -23,6 +23,13 @@ IMAGES, SOUNDS, HITMASKS = {}, {}, {}
 ##############################################################################
 # YOU CAN CHANGE STUFF BELOW THIS LINE
 
+# Use all 16 CPUs
+import os
+os.environ['MKL_NUM_THREADS'] = '16'
+os.environ['GOTO_NUM_THREADS'] = '16'
+os.environ['OMP_NUM_THREADS'] = '16'
+os.environ['openmp'] = 'True'
+
 load_saved_pool = 0  #Set to 1 once sufficiently trained
 save_current_pool = 1  #Set to 0 once sufficiently trained
 current_pool = []
