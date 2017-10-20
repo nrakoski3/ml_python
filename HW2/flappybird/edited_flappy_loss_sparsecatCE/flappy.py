@@ -10,8 +10,6 @@ import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, Activation
 from keras.optimizers import SGD
-from pygame.image import *
-from pygame.image import load_basic
 
 FPS = 30
 SCREENWIDTH  = 288.0
@@ -162,17 +160,18 @@ def main():
 
     # numbers sprites for score display
     IMAGES['numbers'] = (
-        pygame.image.load_basic(os.path.join('assets/sprites', '0.png').convert_alpha(),
-        pygame.image.load_basic(os.path.join('assets/sprites', '1.png').convert_alpha(),
-        pygame.image.load_basic(os.path.join('assets/sprites', '2.png').convert_alpha(),
-        pygame.image.load_basic(os.path.join('assets/sprites', '3.png').convert_alpha(),
-        pygame.image.load_basic(os.path.join('assets/sprites', '4.png').convert_alpha(),
-        pygame.image.load_basic(os.path.join('assets/sprites', '5.png').convert_alpha(),
-        pygame.image.load_basic(os.path.join('assets/sprites', '6.png').convert_alpha(),
-        pygame.image.load_basic(os.path.join('assets/sprites', '7.png').convert_alpha(),
-        pygame.image.load_basic(os.path.join('assets/sprites', '8.png').convert_alpha(),
-        pygame.image.load_basic(os.path.join('assets/sprites', '9.png').convert_alpha()
-                          )
+        pygame.image.load_basic('assets/sprites/0.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/1.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/2.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/3.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/4.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/5.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/6.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/7.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/8.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/9.png').convert_alpha()
+    )
+
     # game over sprite
     IMAGES['gameover'] = pygame.image.load_basic('assets/sprites/gameover.png').convert_alpha()
     # message sprite for welcome screen

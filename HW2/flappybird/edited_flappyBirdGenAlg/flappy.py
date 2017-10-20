@@ -159,24 +159,24 @@ def main():
 
     # numbers sprites for score display
     IMAGES['numbers'] = (
-        pygame.image.load('assets/sprites/0.png').convert_alpha(),
-        pygame.image.load('assets/sprites/1.png').convert_alpha(),
-        pygame.image.load('assets/sprites/2.png').convert_alpha(),
-        pygame.image.load('assets/sprites/3.png').convert_alpha(),
-        pygame.image.load('assets/sprites/4.png').convert_alpha(),
-        pygame.image.load('assets/sprites/5.png').convert_alpha(),
-        pygame.image.load('assets/sprites/6.png').convert_alpha(),
-        pygame.image.load('assets/sprites/7.png').convert_alpha(),
-        pygame.image.load('assets/sprites/8.png').convert_alpha(),
-        pygame.image.load('assets/sprites/9.png').convert_alpha()
+        pygame.image.load_basic('assets/sprites/0.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/1.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/2.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/3.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/4.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/5.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/6.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/7.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/8.png').convert_alpha(),
+        pygame.image.load_basic('assets/sprites/9.png').convert_alpha()
     )
 
     # game over sprite
-    IMAGES['gameover'] = pygame.image.load('assets/sprites/gameover.png').convert_alpha()
+    IMAGES['gameover'] = pygame.image.load_basic('assets/sprites/gameover.png').convert_alpha()
     # message sprite for welcome screen
-    IMAGES['message'] = pygame.image.load('assets/sprites/message.png').convert_alpha()
+    IMAGES['message'] = pygame.image.load_basic('assets/sprites/message.png').convert_alpha()
     # base (ground) sprite
-    IMAGES['base'] = pygame.image.load('assets/sprites/base.png').convert_alpha()
+    IMAGES['base'] = pygame.image.load_basic('assets/sprites/base.png').convert_alpha()
 
     # # sounds
     # if 'win' in sys.platform:
@@ -193,22 +193,22 @@ def main():
     while True:
         # select random background sprites
         randBg = random.randint(0, len(BACKGROUNDS_LIST) - 1)
-        IMAGES['background'] = pygame.image.load(BACKGROUNDS_LIST[randBg]).convert()
+        IMAGES['background'] = pygame.image.load_basic(BACKGROUNDS_LIST[randBg]).convert()
 
         # select random player sprites
         randPlayer = random.randint(0, len(PLAYERS_LIST) - 1)
         IMAGES['player'] = (
-            pygame.image.load(PLAYERS_LIST[randPlayer][0]).convert_alpha(),
-            pygame.image.load(PLAYERS_LIST[randPlayer][1]).convert_alpha(),
-            pygame.image.load(PLAYERS_LIST[randPlayer][2]).convert_alpha(),
+            pygame.image.load_basic(PLAYERS_LIST[randPlayer][0]).convert_alpha(),
+            pygame.image.load_basic(PLAYERS_LIST[randPlayer][1]).convert_alpha(),
+            pygame.image.load_basic(PLAYERS_LIST[randPlayer][2]).convert_alpha(),
         )
 
         # select random pipe sprites
         pipeindex = random.randint(0, len(PIPES_LIST) - 1)
         IMAGES['pipe'] = (
             pygame.transform.rotate(
-                pygame.image.load(PIPES_LIST[pipeindex]).convert_alpha(), 180),
-            pygame.image.load(PIPES_LIST[pipeindex]).convert_alpha(),
+                pygame.image.load_basic(PIPES_LIST[pipeindex]).convert_alpha(), 180),
+            pygame.image.load_basic(PIPES_LIST[pipeindex]).convert_alpha(),
         )
 
         # hismask for pipes
