@@ -27,9 +27,9 @@ IMAGES, SOUNDS, HITMASKS = {}, {}, {}
 import os
 from keras import losses
 
-os.environ['MKL_NUM_THREADS'] = '8'
-os.environ['GOTO_NUM_THREADS'] = '8'
-os.environ['OMP_NUM_THREADS'] = '8'
+os.environ['MKL_NUM_THREADS'] = '16'
+os.environ['GOTO_NUM_THREADS'] = '16'
+os.environ['OMP_NUM_THREADS'] = '16'
 os.environ['openmp'] = 'True'
 
 load_saved_pool = 0  #Set to 1 once sufficiently trained
