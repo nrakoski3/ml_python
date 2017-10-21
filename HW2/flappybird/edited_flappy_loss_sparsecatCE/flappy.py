@@ -37,6 +37,7 @@ save_current_pool = 1  #Set to 0 once sufficiently trained
 current_pool = []
 fitness = []
 total_models = 50
+model_crossover_num = 0
 
 next_pipe_x = -1
 next_pipe_hole_y = -1
@@ -64,6 +65,7 @@ def model_crossover(model_idx1, model_idx2):
     weightsnew2 = weights2
     weightsnew1[0] = weights2[0]
     weightsnew2[0] = weights1[0]
+
     return np.asarray([weightsnew1, weightsnew2])
 
 def model_mutate(weights):
@@ -243,7 +245,9 @@ def showWelcomeAnimation():
 
 def mainGame(movementInfo):
     global fitness
-    score = playerIndex = loopIter = 0
+    score = 0
+    playerIndex = 0
+    loopIter = 0
     playerIndexGen = movementInfo['playerIndexGen']
     playersXList = []
     playersYList = []
@@ -424,6 +428,7 @@ def showGameOverScreen(crashInfo):
     global current_pool
     global fitness
     global generation
+    global model_crossover_num
     new_weights = []
     total_fitness = 0
     for select in range(total_models):
@@ -446,6 +451,8 @@ def showGameOverScreen(crashInfo):
                 idx2 = idxx
                 break
         new_weights1 = model_crossover(idx1, idx2)
+        model_crossover_num = model_crossover_num + 1
+        print("Model CrossOver #: " + str(model_crossover_num) + ", Used Model#s " + str(idx1) +", " + str(idx2))
         updated_weights1 = model_mutate(new_weights1[0])
         updated_weights2 = model_mutate(new_weights1[1])
         new_weights.append(updated_weights1)
@@ -456,6 +463,7 @@ def showGameOverScreen(crashInfo):
     if save_current_pool == 1:
         save_pool()
     generation = generation + 1
+    print("GENERATION " + str(generation) + "FINISHED!!!!!")
     return
 
 # YOU CAN CHANGE STUFF ABOVE THIS LINE
