@@ -26,6 +26,7 @@ IMAGES, SOUNDS, HITMASKS = {}, {}, {}
 # Use all 16 CPUs
 import os
 from keras import losses
+import time
 
 os.environ['MKL_NUM_THREADS'] = '8'
 os.environ['GOTO_NUM_THREADS'] = '8'
@@ -56,6 +57,9 @@ model_crossover_num = 0
 max_generation = 50
 max_score = 0
 current_score = 0
+max_gen_train_time = 0
+total_pool_train_start = time.time()
+total_pool_train_time = 0
 
 def save_pool():
     for xi in range(total_models):
@@ -490,6 +494,8 @@ def showGameOverScreen(crashInfo):
         train = False
         print("GAME OVER!!!")
         print("Game Max Score: " + str(max_score))
+        total_pool_train_time = time.time() - total_pool_train_start
+        print("Total Pool Train Time: " + str(total_pool_train_time))
     return train
 
 # YOU CAN CHANGE STUFF ABOVE THIS LINE
