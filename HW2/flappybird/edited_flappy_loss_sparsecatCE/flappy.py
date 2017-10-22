@@ -37,7 +37,6 @@ save_current_pool = 1  #Set to 0 once sufficiently trained
 current_pool = []
 fitness = []
 total_models = 50
-model_crossover_num = 0
 
 next_pipe_x = -1
 next_pipe_hole_y = -1
@@ -51,6 +50,11 @@ nesterov = True
 loss = losses.sparse_categorical_crossentropy
 # optimizer = sgd
 metrics = ["accuracy"]
+
+# Create Global Vars to Track
+model_crossover_num = 0
+max_generation = 50
+max_score = 0
 
 def save_pool():
     for xi in range(total_models):
@@ -192,8 +196,9 @@ def main():
     # SOUNDS['point']  = pygame.mixer.Sound('assets/audio/point' + soundExt)
     # SOUNDS['swoosh'] = pygame.mixer.Sound('assets/audio/swoosh' + soundExt)
     # SOUNDS['wing']   = pygame.mixer.Sound('assets/audio/wing' + soundExt)
+    train = True
 
-    while True:
+    while train:
         # select random background sprites
         randBg = random.randint(0, len(BACKGROUNDS_LIST) - 1)
         IMAGES['background'] = pygame.image.load(BACKGROUNDS_LIST[randBg]).convert()
@@ -232,7 +237,9 @@ def main():
         for idx in range(total_models):
             fitness[idx] = 0
         crashInfo = mainGame(movementInfo)
-        showGameOverScreen(crashInfo)
+        train = showGameOverScreen(crashInfo)
+
+    return
 
 
 def showWelcomeAnimation():
@@ -412,7 +419,14 @@ def mainGame(movementInfo):
 
         SCREEN.blit(IMAGES['base'], (basex, BASEY))
         # print score so player overlaps the score
+        global max_score
         showScore(score)
+
+        # Save max score - Natalie
+        if score > max_score:
+            max_score = score
+            print("New max score!: " + str(max_score))
+
         for idx in range(total_models):
             if playersState[idx] == True:
                 SCREEN.blit(IMAGES['player'][playerIndex], (playersXList[idx], playersYList[idx]))
@@ -464,7 +478,14 @@ def showGameOverScreen(crashInfo):
         save_pool()
     generation = generation + 1
     print("GENERATION " + str(generation) + "FINISHED!!!!!")
-    return
+    train = True
+    global max_generation
+    global max_score
+    if generation == max_generation:
+        train = False
+        print("GAME OVER!!!")
+        print("Game Max Score: " + str(max_score))
+    return train
 
 # YOU CAN CHANGE STUFF ABOVE THIS LINE
 ##############################################################################
