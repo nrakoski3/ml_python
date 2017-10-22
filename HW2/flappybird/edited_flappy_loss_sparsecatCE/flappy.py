@@ -37,7 +37,7 @@ load_saved_pool = 0  #Set to 1 once sufficiently trained
 save_current_pool = 1  #Set to 0 once sufficiently trained
 current_pool = []
 fitness = []
-total_models = 50
+total_models = 100
 
 next_pipe_x = -1
 next_pipe_hole_y = -1
