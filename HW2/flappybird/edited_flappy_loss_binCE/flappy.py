@@ -47,7 +47,7 @@ lr = 0.01
 decay = 1e-6
 momentum = 0.9
 nesterov = True
-loss = losses.sparse_categorical_crossentropy
+loss = losses.binary_crossentropy
 # optimizer = sgd
 metrics = ["accuracy"]
 
