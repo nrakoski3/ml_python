@@ -55,6 +55,8 @@ metrics = ["accuracy"]
 # Create Global Vars to Track
 model_crossover_num = 0
 max_generation = 50
+max_fitness = 0
+avg_fitness = 0
 max_score = 0
 current_score = 0
 max_gen_train_time = 0
@@ -482,10 +484,19 @@ def showGameOverScreen(crashInfo):
         save_pool()
 
     global max_generation
+    global max_fitness
+    global avg_fitness
     global max_score
+    global total_pool_train_start
     generation = generation + 1
     print("GENERATION " + str(generation) + "FINISHED!!!!!")
-    # Save max score - Natalie
+    # Calc Metrics
+    avg_fitness += total_fitness
+
+    # Save max score/ fitness - Natalie
+    if total_fitness > max_fitness:
+        max_fitness = total_fitness
+        print("New max fitness!: " + str(max_fitness))
     if current_score > max_score:
         max_score = current_score
         print("New max score!: " + str(max_score))
@@ -493,6 +504,9 @@ def showGameOverScreen(crashInfo):
     if generation == max_generation:
         train = False
         print("GAME OVER!!!")
+        avg_fitness = avg_fitness/max_generation
+        print("Game AVG Fitness: " + str(avg_fitness))
+        print("Game Max Fitness: " + str(max_fitness))
         print("Game Max Score: " + str(max_score))
         total_pool_train_time = time.time() - total_pool_train_start
         print("Total Pool Train Time: " + str(total_pool_train_time))
